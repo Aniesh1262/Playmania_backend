@@ -20,7 +20,7 @@ public class User {
     @Column(name = "email_id")
     private String emailId;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password_hash")
     private String passwordHash;
 
     @Column(name = "age")
