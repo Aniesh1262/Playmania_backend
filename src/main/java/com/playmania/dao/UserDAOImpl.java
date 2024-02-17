@@ -20,7 +20,8 @@ public class UserDAOImpl implements UserDAO{
     @Override
     @Transactional
     public void save(User theUser) {
-        entityManager.persist(theUser);
+        System.out.println(theUser.getUserId());
+        entityManager.merge(theUser);
     }
 
     @Override

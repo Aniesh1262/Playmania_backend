@@ -10,13 +10,19 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
     private UserDAO userDAO;
+    private UUIDGenService uuidGenService;
     @Autowired
-    public UserServiceImpl (UserDAO userDAO){
+    public UserServiceImpl (UserDAO userDAO ,UUIDGenService uuidGenService){
+
         this.userDAO=userDAO;
+        this.uuidGenService=uuidGenService;
     }
     @Override
     public void save(User theUser) {
-    userDAO.save(theUser);
+        Long id=uuidGenService.generateUniqueId();
+        theUser.setUserId(id);
+        System.out.println(id);
+        userDAO.save(theUser);
     }
 
     @Override

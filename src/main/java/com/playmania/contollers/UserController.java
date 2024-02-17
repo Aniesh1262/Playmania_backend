@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users/")
+@RequestMapping("/api/user")
 public class UserController {
     private UserService userService;
     @Autowired
@@ -19,8 +19,9 @@ public class UserController {
         this.userService=userService;
     }
     @PostMapping("/addUser")
-    public void AddUser(@RequestBody User theUser){
+    public Long AddUser(@RequestBody User theUser){
     userService.save(theUser);
+    return theUser.getUserId();
 
     }
     @GetMapping()

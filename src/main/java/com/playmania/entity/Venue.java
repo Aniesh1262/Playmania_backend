@@ -1,14 +1,15 @@
 package com.playmania.entity;
 
+import com.google.gson.Gson;
 import jakarta.persistence.*;
 
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Table(name = "VENUES")
 public class Venue {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "venue_id")
     private Long venueId;
 
@@ -134,12 +135,15 @@ public class Venue {
         this.location = location;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<String> getImageUrl() {
+        Gson gson = new Gson();
+        return gson.fromJson(this.imageUrl, List.class);
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrl(List<String> urls) {
+        Gson gson = new Gson();
+        this.imageUrl = gson.toJson(urls);
+
     }
 
     public Owner getOwner() {
